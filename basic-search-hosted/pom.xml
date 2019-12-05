@@ -8,12 +8,12 @@
     <groupId>com.yahoo.example</groupId>
     <artifactId>basic-search-hosted</artifactId>
     <version>1.0.0</version>
-    <packaging>container-plugin</packaging>  <!-- Use Vespa packaging -->
+    <packaging>container-plugin</packaging>                     <!-- Use Vespa packaging -->
 
     <parent>
         <groupId>com.yahoo.vespa</groupId>
         <artifactId>tenant-base</artifactId>
-        <version>[7,999)</version>
+        <version>[7,999)</version>                              <!-- Keep Vespa up to date -->
     </parent>
 
     <properties>

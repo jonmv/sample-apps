@@ -2,9 +2,7 @@
 
 # Vespa sample applications - e-commerce
 
-A sample application showcasing a simple e-commerce site built with Vespa.
-Please refer to [Vespa use cases](https://docs.vespa.ai/documentation/use-case-shopping.html)
-for more information.
+A sample application showcasing a simple e-commerce site built with Vespa. Refer to [Use Case - shopping](https://docs.vespa.ai/documentation/use-case-shopping.html).
 
 Included scripts to convert data from Julian McAuley's Amazon product data set
 (http://jmcauley.ucsd.edu/data/amazon/links.html)
@@ -18,7 +16,7 @@ above and use the scripts to convert.
 
 <pre data-test="exec">
 $ git clone https://github.com/vespa-engine/sample-apps.git
-$ export VESPA_SAMPLE_APPS=`pwd`/sample-apps
+$ VESPA_SAMPLE_APPS=`pwd`/sample-apps
 $ cd $VESPA_SAMPLE_APPS/use-case-shopping &amp;&amp; mvn clean package
 $ docker run --detach --name vespa --hostname vespa-container --privileged \
   --volume $VESPA_SAMPLE_APPS:/vespa-sample-apps --publish 8080:8080 vespaengine/vespa

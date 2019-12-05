@@ -18,8 +18,6 @@ import static com.mydomain.example.TestUtilities.assertStatusCode;
 import static com.mydomain.example.TestUtilities.container;
 import static com.mydomain.example.TestUtilities.entriesOf;
 import static com.mydomain.example.TestUtilities.print;
-import static com.mydomain.example.TestUtilities.requestFor;
-import static com.mydomain.example.TestUtilities.send;
 import static com.mydomain.example.TestUtilities.toInspector;
 import static java.net.http.HttpRequest.BodyPublishers.noBody;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -36,8 +34,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 @SystemTest
 @StagingTest
-@Tag("system")
-@Tag("staging")
 @DisplayName("Test that the application")
 class _01_BasicTest {
 
@@ -48,7 +44,7 @@ class _01_BasicTest {
     @Test
     @DisplayName("serves 200 OK on /status.html")
     void isUp() {
-        var response = send(container(), requestFor(container(), "/status.html"));
+        var response = container().send(container().request("/status.html"));
         assertStatusCode(200, response);
     }
 
@@ -59,7 +55,7 @@ class _01_BasicTest {
     @Test
     @DisplayName("has expected components, as per services.xml")
     void hasComponents() {
-        var response = send(container(), requestFor(container(), "/ApplicationStatus"));
+        var response = container().send(container().request("/ApplicationStatus"));
         assertStatusCode(200, response);
 
         Inspector root = toInspector(response.body());
@@ -93,7 +89,7 @@ class _01_BasicTest {
         @Test
         @DisplayName("rejects empty queries")
         void rejectsEmptyQueries() {
-            var response = send(container(), requestFor(container(), "/search/"));
+            var response = container().send(container().request("/search/"));
             assertStatusCode(400, response);
 
             Inspector root = toInspector(response.body());
@@ -106,7 +102,7 @@ class _01_BasicTest {
         @DisplayName("returns an empty result when there are no documents")
         void emptyResult() {
             var yql = "SELECT * FROM SOURCES books WHERE default CONTAINS \"Shakespeare\";";
-            var response = send(container(), requestFor(container(), "/search/", Map.of("yql", yql)));
+            var response = container().send(container().request("/search/", Map.of("yql", yql)));
             assertStatusCode(200, response);
 
             Inspector root = toInspector(response.body());
@@ -153,7 +149,7 @@ class _01_BasicTest {
                               "}\n";
 
             var body = HttpRequest.BodyPublishers.ofString(document, UTF_8);
-            var response = send(container(), requestFor(container(), documentApiPath).method("POST", body));
+            var response = container().send(container().request(documentApiPath).method("POST", body));
             assertStatusCode(200, response);
 
             Inspector root = toInspector(response.body());
@@ -175,7 +171,7 @@ class _01_BasicTest {
                             "}\n";
 
             var body = HttpRequest.BodyPublishers.ofString(update, UTF_8);
-            var response = send(container(), requestFor(container(), documentApiPath).method("PUT", body));
+            var response = container().send(container().request(documentApiPath).method("PUT", body));
             assertStatusCode(200, response);
 
             Inspector root = toInspector(response.body());
@@ -187,7 +183,7 @@ class _01_BasicTest {
         @Order(3)
         @DisplayName("reads an existing document")
         void getDocument() {
-            var response = send(container(), requestFor(container(), documentApiPath));
+            var response = container().send(container().request(documentApiPath));
             assertStatusCode(200, response);
 
             Inspector root = toInspector(response.body());
@@ -201,7 +197,7 @@ class _01_BasicTest {
         @Order(4)
         @DisplayName("deletes an existing document")
         void removeDocument() {
-            var response = send(container(), requestFor(container(), documentApiPath).method("DELETE", noBody()));
+            var response = container().send(container().request(documentApiPath).method("DELETE", noBody()));
             assertStatusCode(200, response);
 
             Inspector root = toInspector(response.body());

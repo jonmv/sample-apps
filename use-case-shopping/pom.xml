@@ -6,15 +6,15 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ai.vespa.example</groupId>
-    <artifactId>shopping</artifactId>
+    <artifactId>use-case-shopping</artifactId>
     <version>1.0</version>
     <packaging>container-plugin</packaging>  <!-- Use Vespa packaging -->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <test.hide>true</test.hide>
-        <vespa_version>7.28.21</vespa_version>
-        <junit_version>4.11</junit_version>
+        <vespa_version>7.145.41</vespa_version>
+        <junit.version>5.4.2</junit.version>
     </properties>
 
     <dependencies>
@@ -43,10 +43,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit_version}</version>
-            <scope>test</scope>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
         </dependency>
     </dependencies>
 

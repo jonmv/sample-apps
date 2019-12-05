@@ -1,17 +1,14 @@
 <!-- Copyright 2017 Yahoo Holdings. Licensed under the terms of the Apache 2.0 license. See LICENSE in the project root. -->
 # Vespa sample applications - blog search tutorial
 
-This sample application contains the code for the blog search tutorial.
-
-Please refer to
-[Vespa tutorial pt.1 - Blog searching](http://docs.vespa.ai/documentation/tutorials/blog-search.html)
-for more information.
+This sample application contains the code for the blog search tutorial. Refer to
+[Vespa tutorial pt.1 - Blog searching](http://docs.vespa.ai/documentation/tutorials/blog-search.html).
 
 
 **Executable example:**
 <pre data-test="exec">
 $ git clone https://github.com/vespa-engine/sample-apps.git
-$ export VESPA_SAMPLE_APPS=`pwd`/sample-apps
+$ VESPA_SAMPLE_APPS=`pwd`/sample-apps
 $ docker run -m 10G --detach --name vespa --hostname vespa-container --privileged \
   --volume $VESPA_SAMPLE_APPS:/vespa-sample-apps --publish 8080:8080 vespaengine/vespa
 </pre>
